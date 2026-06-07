@@ -213,10 +213,21 @@ VITE_API_URL=https://your-backend.railway.app
 Build command: `npm run build`  
 Output directory: `dist`
 
-## 🧪 Continuous Integration
-This repository includes a GitHub Actions workflow at `.github/workflows/ci.yml`.
-On every push or pull request to `main`, the workflow:
-- installs backend dependencies
-- validates backend syntax with `npm run check`
-- installs frontend dependencies
-- builds the frontend with `npm run build`
+## 🚀 Deploy on Render
+This repo includes a Render deployment configuration at `render.yaml`.
+
+Render will create two services:
+- `chatflow-backend` (Node web service)
+- `chatflow-frontend` (static site)
+
+The frontend is already configured to point at:
+`https://chatflow-backend.onrender.com`
+
+### Required Render secrets
+In the Render dashboard, add these secrets for the backend service:
+- `MONGO_URI`
+- `JWT_SECRET`
+
+### Notes
+- Backend CORS is configured for the frontend service URL in Render.
+- If the service names are already taken, change them in `render.yaml`.

@@ -1,0 +1,29 @@
+services:
+  - type: web_service
+    name: chatflow-backend
+    env: node
+    plan: free
+    region: oregon
+    branch: main
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        fromSecret: MONGO_URI
+      - key: JWT_SECRET
+        fromSecret: JWT_SECRET
+      - key: CLIENT_URL
+        value: https://chatflow-frontend.onrender.com
+
+  - type: static_site
+    name: chatflow-frontend
+    plan: free
+    region: oregon
+    branch: main
+    root: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://chatflow-backend.onrender.com
