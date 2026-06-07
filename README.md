@@ -50,6 +50,15 @@ chat-fullstack/
 - Node.js 18+
 - MongoDB (local or [Atlas](https://www.mongodb.com/atlas))
 
+### Root Setup
+
+```bash
+npm install
+npm run bootstrap
+```
+
+This installs root dev tools plus backend and frontend dependencies.
+
 ### 1. Backend Setup
 
 ```bash
@@ -102,6 +111,33 @@ npm run dev
 ```
 
 > App will be available at `http://localhost:3000`
+
+### 3. Run both apps from the repo root
+
+```bash
+npm run dev
+```
+
+This starts the backend and frontend together using `concurrently`.
+
+### 4. Run with Docker Compose
+
+From the repo root:
+
+```bash
+docker compose up --build
+```
+
+This starts:
+- MongoDB on port `27017`
+- backend on port `5000`
+- frontend on port `3000`
+
+To stop the stack:
+
+```bash
+docker compose down
+```
 
 ---
 
