@@ -164,7 +164,7 @@ io(SERVER_URL, { auth: { token: "your-jwt-token" } })
 Set these environment variables:
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://...
+MONGO_URI=mongodb+srv://nitish125:<db_password>@cluster0.gfugxtx.mongodb.net/?appName=Cluster0
 JWT_SECRET=<strong-secret>
 CLIENT_URL=https://your-frontend.vercel.app
 ```
