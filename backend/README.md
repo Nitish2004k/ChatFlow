@@ -24,7 +24,7 @@ npm start        # production
 PORT=5000
 MONGO_URI=mongodb+srv://nitish125:<db_password>@cluster0.gfugxtx.mongodb.net/?appName=Cluster0
 JWT_SECRET=change_this_to_something_long_and_random
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=http://localhost:3000
 ```
 
 - Get a free MongoDB Atlas cluster at https://mongodb.com/atlas

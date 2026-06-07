@@ -177,10 +177,10 @@ VITE_API_URL=https://your-backend.railway.app
 Build command: `npm run build`  
 Output directory: `dist`
 
----
-
-## 🛠 Tech Stack
-
-**Frontend**: React 18, Vite, Socket.IO Client, CSS (custom design system)  
-**Backend**: Node.js, Express, Socket.IO, Mongoose, JWT, bcryptjs  
-**Database**: MongoDB
+## 🧪 Continuous Integration
+This repository includes a GitHub Actions workflow at `.github/workflows/ci.yml`.
+On every push or pull request to `main`, the workflow:
+- installs backend dependencies
+- validates backend syntax with `npm run check`
+- installs frontend dependencies
+- builds the frontend with `npm run build`
