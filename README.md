@@ -200,7 +200,7 @@ io(SERVER_URL, { auth: { token: "your-jwt-token" } })
 Set these environment variables:
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://nitish125:<db_password>@cluster0.gfugxtx.mongodb.net/?appName=Cluster0
+MONGO_URI=mongodb+srv://chatflow:<db_password>@cluster0.gfugxtx.mongodb.net/chatflow?retryWrites=true&w=majority
 JWT_SECRET=<strong-secret>
 CLIENT_URL=https://your-frontend.vercel.app
 ```
@@ -213,7 +213,25 @@ VITE_API_URL=https://your-backend.railway.app
 Build command: `npm run build`  
 Output directory: `dist`
 
-## 🚀 Deploy on Render
+## � Deploy on Railway (single Docker service)
+This repository now supports a single Railway Docker deployment from the repo root.
+
+Use the root `Dockerfile` and these settings:
+- Root directory: `.`
+- Dockerfile: `Dockerfile`
+- Build: Railway Docker
+- Start: handled by `CMD ["node", "server.js"]` in the root `Dockerfile`
+
+Railway environment variables:
+- `MONGO_URI`
+- `JWT_SECRET`
+- `CLIENT_URL` = `https://<your-railway-app>.railway.app`
+
+Because the frontend and backend are served from the same container, the app uses relative API and socket paths by default.
+
+If you want, you can also set `VITE_API_URL` explicitly to the deployed app URL, but it is not required for same-origin deployment.
+
+## �🚀 Deploy on Render
 This repo includes a Render deployment configuration at `render.yaml`.
 
 Render will create two services:

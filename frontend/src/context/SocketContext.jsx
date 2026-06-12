@@ -12,7 +12,7 @@ export function SocketProvider({ children }) {
   useEffect(() => {
     if (!user?.token) return;
 
-    const s = io(import.meta.env.VITE_API_URL || "http://localhost:5000", {
+    const s = io(import.meta.env.VITE_API_URL || undefined, {
       auth: { token: user.token },
       transports: ["websocket"],
     });

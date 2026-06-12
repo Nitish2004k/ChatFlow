@@ -22,12 +22,20 @@ npm start        # production
 
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://nitish125:<db_password>@cluster0.gfugxtx.mongodb.net/?appName=Cluster0
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.gfugxtx.mongodb.net/chatflow?retryWrites=true&w=majority
 JWT_SECRET=change_this_to_something_long_and_random
 CLIENT_URL=http://localhost:3000
 ```
 
 - Get a free MongoDB Atlas cluster at https://mongodb.com/atlas
+- Create a database user and use that Atlas username/password in `MONGO_URI`
+- If you get `bad auth`, your username or password is incorrect, or the URI is malformed
+- For local development, you may also use:
+
+```
+MONGO_URI=mongodb://localhost:27017/chatflow
+```
+
 - Generate a strong JWT_SECRET (e.g. `openssl rand -hex 32`)
 
 ## API Reference

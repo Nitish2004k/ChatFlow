@@ -1,0 +1,18 @@
+{
+  "project": {
+    "name": "chatflow-fullstack"
+  },
+  "services": [
+    {
+      "name": "chatflow",
+      "type": "docker",
+      "path": ".",
+      "dockerfile": "Dockerfile"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "<your-mongodb-connection-string>",
+    "JWT_SECRET": "<strong-secret>",
+    "CLIENT_URL": "<your-deployed-app-url>"
+  }
+}
