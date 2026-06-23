@@ -14,30 +14,11 @@ const server = http.createServer(app);
 // Connect MongoDB
 connectDB();
 
-// Allowed Frontend URLs
-const allowedOrigins = [
-  "https://chatflow-frontend-five.vercel.app",
-  "https://chatflow-frontend-hyy8lin0q-nitish-kumar-gupta-s-projects.vercel.app",
-  "http://localhost:3000",
-  "http://localhost:5173",
-];
-
-// CORS
+// CORS (Allow all origins temporarily)
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, mobile apps)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("CORS not allowed"));
-    },
+    origin: true,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -50,7 +31,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/rooms", require("./routes/rooms"));
 app.use("/api/messages", require("./routes/messages"));
 
-// Health Check Route
+// Health Check
 app.get("/", (req, res) => {
   res.status(200).json({
     status: "ChatFlow API running 🚀",
@@ -60,10 +41,9 @@ app.get("/", (req, res) => {
 // Socket.io
 initSocket(server);
 
-// Global Error Handler
+// Error Handler
 app.use((err, req, res, next) => {
-  console.error("Error:", err.message);
-
+  console.error(err);
   res.status(500).json({
     success: false,
     message: err.message || "Internal Server Error",
@@ -76,6 +56,89 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
+
+
+
+
+
+// const express = require("express");
+// const http = require("http");
+// const cors = require("cors");
+// const dotenv = require("dotenv");
+
+// const connectDB = require("./config/db");
+// const initSocket = require("./socket/socketHandler");
+
+// dotenv.config();
+
+// const app = express();
+// const server = http.createServer(app);
+
+// // Connect MongoDB
+// connectDB();
+
+// // Allowed Frontend URLs
+// const allowedOrigins = [
+//   "https://chatflow-frontend-five.vercel.app",
+//   "https://chatflow-frontend-hyy8lin0q-nitish-kumar-gupta-s-projects.vercel.app",
+//   "http://localhost:3000",
+//   "http://localhost:5173",
+// ];
+
+// // CORS
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       // Allow requests with no origin (Postman, mobile apps)
+//       if (!origin) return callback(null, true);
+
+//       if (allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+
+//       return callback(new Error("CORS not allowed"));
+//     },
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+
+// // Middleware
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// // Routes
+// app.use("/api/auth", require("./routes/auth"));
+// app.use("/api/rooms", require("./routes/rooms"));
+// app.use("/api/messages", require("./routes/messages"));
+
+// // Health Check Route
+// app.get("/", (req, res) => {
+//   res.status(200).json({
+//     status: "ChatFlow API running 🚀",
+//   });
+// });
+
+// // Socket.io
+// initSocket(server);
+
+// // Global Error Handler
+// app.use((err, req, res, next) => {
+//   console.error("Error:", err.message);
+
+//   res.status(500).json({
+//     success: false,
+//     message: err.message || "Internal Server Error",
+//   });
+// });
+
+// // Start Server
+// const PORT = process.env.PORT || 5000;
+
+// server.listen(PORT, "0.0.0.0", () => {
+//   console.log(`✅ Server running on port ${PORT}`);
+// });
 
 
 
