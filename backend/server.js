@@ -11,14 +11,16 @@ const app = express();
 const server = http.createServer(app);
 
 
-// Database Connection
+// Connect Database
 connectDB();
 
 
-// CORS Configuration for Vercel Frontend
+// CORS Configuration (Vercel Frontend)
 app.use(
   cors({
-    origin: "https://chatflow-frontend-five.vercel.app",
+    origin: [
+      "https://chatflow-frontend-five.vercel.app"
+    ],
     credentials: true,
     methods: [
       "GET",
@@ -31,7 +33,7 @@ app.use(
     allowedHeaders: [
       "Content-Type",
       "Authorization"
-    ]
+    ],
   })
 );
 
@@ -46,7 +48,7 @@ app.use("/api/rooms", require("./routes/rooms"));
 app.use("/api/messages", require("./routes/messages"));
 
 
-// API Health Check
+// Health Check
 app.get("/", (req, res) => {
   res.json({
     status: "ChatFlow API running 🚀"
@@ -64,7 +66,6 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
-
 
 
 // const express = require("express");
